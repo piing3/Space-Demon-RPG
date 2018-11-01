@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graphics;
+package TempGraphics;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -22,9 +22,11 @@ public class Graphics extends Canvas implements Runnable {
     private static final int WIDTH = 300;
     private static final int HEIGHT = WIDTH / 16 * 9;
     private static final int SCALE = 3;
-    private static final int TILESIZE = 16;
+    private static final int TILESIZE = 32;
     public int x = 0, y = 0;
-    public static final int MOVE_SPEED = 5;
+
+    public static final int MOVE_SPEED = 4;
+    public static final int MOVE_SPEED_WALK = MOVE_SPEED / 2;
 
     private Thread thread;
     private boolean running = false;
@@ -41,7 +43,7 @@ public class Graphics extends Canvas implements Runnable {
         screen = new Screen(WIDTH, HEIGHT);
         frame = new JFrame();
         key = new Keyboard();
-        
+
         addKeyListener(key);
     }
 
@@ -64,7 +66,7 @@ public class Graphics extends Canvas implements Runnable {
     public void run() {
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
-        final double ns =  1000000000.0 / 60.0;
+        final double ns = 1000000000.0 / 60.0;
         double delta = 0;
         int frames = 0;
         int updates = 0;
@@ -72,15 +74,15 @@ public class Graphics extends Canvas implements Runnable {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while(delta >= 1){
+            while (delta >= 1) {
                 update();
                 updates++;
                 delta--;
             }
-            
+
             render();
             frames++;
-            
+
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 System.out.println("Fps:" + frames + "  Ups:" + updates);
@@ -114,20 +116,39 @@ public class Graphics extends Canvas implements Runnable {
 
     private void update() {
         key.update();
+        if (key.shift) {
+            System.out.println("Shift:" + key.shift);
+        }
         if (key.up) {
-            y -= MOVE_SPEED;
+            if (key.shift) {
+                y -= MOVE_SPEED_WALK;
+            } else {
+                y -= MOVE_SPEED;
+            }
             System.out.println("up:" + key.up);
         }
         if (key.down) {
-            y += MOVE_SPEED;
+            if (key.shift) {
+                y += MOVE_SPEED_WALK;
+            } else {
+                y += MOVE_SPEED;
+            }
             System.out.println("Down:" + key.down);
         }
         if (key.left) {
-            x -= MOVE_SPEED;
+            if (key.shift) {
+                x -= MOVE_SPEED_WALK;
+            } else {
+                x -= MOVE_SPEED;
+            }
             System.out.println("left:" + key.left);
         }
         if (key.right) {
-            x += MOVE_SPEED;
+            if (key.shift) {
+                x += MOVE_SPEED_WALK;
+            } else {
+                x += MOVE_SPEED;
+            }
             System.out.println("right:" + key.right);
         }
     }
@@ -141,7 +162,7 @@ public class Graphics extends Canvas implements Runnable {
         //clears Screen
         screen.clear();
         //Filled Pixels in Screen Class
-        screen.render(x,y);
+        screen.render(x, y);
         //Copies Pixels from Screen Class
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
@@ -149,11 +170,12 @@ public class Graphics extends Canvas implements Runnable {
         java.awt.Graphics g = bs.getDrawGraphics();
         //Draws the Pixel Array
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-        
+
         g.dispose();
         bs.show();
     }
-    public static int getTileSize(){
+
+    public static int getTileSize() {
         return TILESIZE;
     }
 }

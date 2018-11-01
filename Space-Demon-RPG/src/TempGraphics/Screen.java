@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Graphics;
+package TempGraphics;
 
 import static java.lang.Math.random;
 import java.util.Random;
@@ -15,7 +15,7 @@ import java.util.Random;
 public class Screen {
 
     private int width, height;
-    public int MAP_SIZE = 5;
+    public int MAP_SIZE = 12;
     public int MAP_SIZE_MASK = MAP_SIZE - 1;
     public int[] pixels;
 
@@ -47,8 +47,8 @@ public class Screen {
             for (int x = 0; x < width; x++) {
                 int xMove = x + xOffset;
                 //if (xMove < 0 || xMove >= width) break;
-                int tileIndex = ((xMove >> 4) & MAP_SIZE_MASK) + ((yMove >> 4) & MAP_SIZE_MASK) * MAP_SIZE;
-                pixels[x + y * width] = tiles[tileIndex];
+                int tileIndex = ((xMove / Graphics.getTileSize()) & MAP_SIZE_MASK) + ((yMove / Graphics.getTileSize()) & MAP_SIZE_MASK) * MAP_SIZE;
+                pixels[x + y * width] = Sprite.grass.pixels[(x&15) + (y&15) * 16];
             }
         }
     }
