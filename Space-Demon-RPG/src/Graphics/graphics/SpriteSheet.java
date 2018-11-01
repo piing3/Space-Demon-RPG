@@ -21,7 +21,7 @@ public class SpriteSheet {
     public final int SIZE;
     public int[] pixels;
 
-    public static SpriteSheet tiles = new SpriteSheet("//Textures//spriteSheet.png", 256);
+    public static SpriteSheet tiles = new SpriteSheet("/Textures/spriteSheet.png", 256);
 
     public SpriteSheet(String path, int size) {
         this.path = path;
@@ -31,8 +31,9 @@ public class SpriteSheet {
     }
 
     private void load() {
+        BufferedImage image;
         try {
-            BufferedImage image = ImageIO.read(SpriteSheet.class.getResource("C:/Users/Ben Allen/Documents/GitHub/Space-Demon-RPG/Space-Demon-RPG/src/Textures/test.png"));
+            image = ImageIO.read(SpriteSheet.class.getResource(path));
             int w = image.getWidth();
             int h = image.getHeight();
             image.getRGB(0, 0, w, h, pixels, 0, w);

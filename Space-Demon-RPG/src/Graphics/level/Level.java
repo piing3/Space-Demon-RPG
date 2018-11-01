@@ -18,7 +18,6 @@ public class Level {
     protected int[] tilesint;
     //protected int[] tiles;
     protected Tile[] tiles;
-    
 
     public Level(int width, int height) {
         this.width = width;

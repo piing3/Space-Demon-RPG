@@ -2,7 +2,7 @@ package spacedemonrpg;
 
 /**
  * Author: Davin Holmberg
- * 
+ *
  */
 public class SpaceDemonRPG {
 

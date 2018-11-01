@@ -40,7 +40,6 @@ public class Sprite {
     public static Sprite player_left_2 = new Sprite(32, 2, 7, SpriteSheet.tiles);
     public static Sprite player_right_1 = new Sprite(32, 3, 6, SpriteSheet.tiles);
     public static Sprite player_right_2 = new Sprite(32, 3, 7, SpriteSheet.tiles);
-    
 
     public Sprite(int size, int x, int y, SpriteSheet sheet) {
         this.SIZE = size;
