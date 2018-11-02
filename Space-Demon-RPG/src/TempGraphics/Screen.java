@@ -48,7 +48,7 @@ public class Screen {
                 int xMove = x + xOffset;
                 //if (xMove < 0 || xMove >= width) break;
                 int tileIndex = ((xMove / Graphics.getTileSize()) & MAP_SIZE_MASK) + ((yMove / Graphics.getTileSize()) & MAP_SIZE_MASK) * MAP_SIZE;
-                pixels[x + y * width] = Sprite.grass.pixels[(x&15) + (y&15) * 16];
+                pixels[x + y * width] = Sprite.grass.pixels[(x & 15) + (y & 15) * 16];
             }
         }
     }

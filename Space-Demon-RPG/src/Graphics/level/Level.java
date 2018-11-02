@@ -24,7 +24,6 @@ public class Level {
         this.width = width;
         this.height = height;
         this.tilesint = new int[width * height];
-        //this.tiles = new Tile[width * height];
         generateLevel();
     }
 
