@@ -12,6 +12,7 @@ public abstract class Actor extends Entity{
 
     private int actorType;
     private String name;
+    private String[] dialogue;
     //private ??? movement; no clue how to do this
     
     public Actor(BufferedImage sprite, Position pos, int actorType, String name) {

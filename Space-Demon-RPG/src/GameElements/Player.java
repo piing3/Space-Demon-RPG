@@ -1,6 +1,7 @@
 package GameElements;
 
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 import javax.swing.text.Position;
 
 /**
@@ -10,11 +11,10 @@ import javax.swing.text.Position;
  */
 public class Player extends Actor{
 
-    //what
+    private final Inventory inventory = new Inventory();
     
     public Player(BufferedImage sprite, Position pos) {
         super(sprite, pos, 0, "Garry from IT, thirteenth of his name");
     }
-
-    //what
+    
 }
