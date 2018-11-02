@@ -18,12 +18,12 @@ public class Level {
     protected int[] tilesint;
     //protected int[] tiles;
     protected Tile[] tiles;
+    
 
     public Level(int width, int height) {
         this.width = width;
         this.height = height;
         this.tilesint = new int[width * height];
-        //this.tiles = new Tile[width * height];
         generateLevel();
     }
 
